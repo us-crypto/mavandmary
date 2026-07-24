@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maryam, Will You Marry Me? 💖🐾</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Vazirmatn:wght@400;700&family=Dancing+Script:wght@700&display=swap');
+    
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Vazirmatn', 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9ff3, #f368e0, #ff6b9d, #ffeaa7);
+      color: #2c3e50;
+      text-align: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+    h1 { font-family: 'Dancing Script', cursive; font-size: 3.4rem; color: #e84393; margin: 15px 0; text-shadow: 3px 3px 0 #fff; }
+    .paw { font-size: 4rem; animation: wag 0.8s infinite alternate; }
+    @keyframes wag { from { transform: rotate(-25deg); } to { transform: rotate(25deg); } }
+
+    button {
+      font-size: 1.35rem; padding: 16px 35px; margin: 10px;
+      border: none; border-radius: 50px; cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: all 0.3s;
+    }
+    .yes { background: #ff6b9d; color: white; }
+    .yes:hover { transform: scale(1.12); background: #e84393; }
+    .no { background: #ff4757; color: white; position: absolute; }
+
+    .option { 
+      background: white; color: #2c3e50; padding: 18px 30px; 
+      margin: 10px; border-radius: 30px; display: inline-block; 
+      font-size: 1.25rem; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .option:hover { background: #ff9ff3; transform: scale(1.08); color: white; }
+
+    img { max-width: 100%; border-radius: 20px; margin: 20px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+
+    .hearts { position: absolute; font-size: 2.8rem; animation: float 9s infinite linear; opacity: 0.9; }
+    @keyframes float { 0% { transform: translateY(120vh); } 100% { transform: translateY(-120px); } }
+
+    .summary { background: rgba(255,255,255,0.95); padding: 25px; border-radius: 25px; margin: 20px auto; max-width: 700px; font-size: 1.2rem; text-align: left; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Page 1 -->
+    <div id="page1">
+      <img src="your-favorite-pic.jpegpg" alt="Maverick & Maryam" style="max-height:380px;">
+      <h1>سلام عشقم مریم 💖</h1>
+      <p style="font-size:1.65rem;">Hey my love... After everything, it's always been you.</p>
+      <h1 style="color:#e84393;">Maryam, will you marry me? / مریم جونم، باهام ازدواج می‌کنی؟</h1>
+
+      <button class="yes" onclick="sayYes()">YES!!! / بله!!! 💍🥹💖</button>
+      <button class="no" id="noBtn">No / نه</button>
+    </div>
+
+    <div id="page2" class="question" style="display:none;">
+      <h1>She said YES!!! / گفت بله!!! 🥳💖🐾</h1>
+      <p style="font-size:1.7rem;">I'm the happiest man alive. Thank you for everything.</p>
+      <img src="your-favorite-pic.jpegpg" alt="Us" style="max-height:280px;">
+
+      <h2>How do you want our wedding style? / چطور دوست داری مراسم‌مون باشه؟</h2>
+      <button class="option" onclick="selectAndNext(3, 'Beach American Style')">Beach American Style / ساحل به سبک آمریکایی</button>
+      <button class="option" onclick="selectAndNext(3, 'Woods Fairytale')">Woods Fairytale / جنگل رویایی</button>
+      <button class="option" onclick="selectAndNext(3, 'Cozy Garden')">Cozy Garden / باغ دنج</button>
+      <button class="option" onclick="selectAndNext(3, 'Luxury Hall')">Luxury Hall / هال لوکس</button>
+    </div>
+
+    <div id="page3" class="question" style="display:none;">
+      <h2>Where should the ceremony be? / مراسم کجا برگزار بشه؟</h2>
+      <button class="option" onclick="selectAndNext(4, 'Shiraz')">Shiraz / شیراز</button>
+      <button class="option" onclick="selectAndNext(4, 'Gorgan')">Gorgan / گرگان</button>
+      <button class="option" onclick="selectAndNext(4, 'Kish')">Kish / کیش</button>
+      <button class="option" onclick="selectAndNext(4, 'Sari')">Sari / ساری</button>
+    </div>
+
+    <div id="page4" class="question" style="display:none;">
+      <h2>Where for honeymoon? / ماه عسل کجا بریم؟</h2>
+      <button class="option" onclick="selectAndNext(5, 'Maldives')">Maldives / مالدیو</button>
+      <button class="option" onclick="selectAndNext(5, 'Antalya')">Antalya / آنتالیا</button>
+      <button class="option" onclick="selectAndNext(5, 'Armenia')">Armenia / ارمنستان</button>
+      <button class="option" onclick="selectAndNext(5, 'Kish')">Kish / کیش</button>
+      <button class="option" onclick="selectAndNext(5, 'Dubai')">Dubai / دبی</button>
+      <button class="option" onclick="selectAndNext(5, 'Cloudy Forest North')">Cloudy Forest North / جنگل ابری شمال</button>
+    </div>
+
+    <div id="page5" class="question" style="display:none;">
+      <h2>Where do you want to live? / دوست داری تو زندگی کجا زندگی کنیم؟</h2>
+      <button class="option" onclick="selectAndNext(6, 'Shiraz')">Shiraz / شیراز</button>
+      <button class="option" onclick="selectAndNext(6, 'Gorgan')">Gorgan / گرگان</button>
+      <button class="option" onclick="selectAndNext(6, 'Sari')">Sari / ساری</button>
+      <button class="option" onclick="selectAndNext(6, 'Kish')">Kish / کیش</button>
+      <button class="option" onclick="selectAndNext(6, 'Wherever with you')">Wherever with you / هرجا که Maverick باشه</button>
+    </div>
+
+    <div id="page6" class="question" style="display:none;">
+      <h2>How many cuddles & kisses every day? / هر روز چند تا بغل و بوسه می‌خوای؟ 💕</h2>
+      <button class="option" onclick="finish('Unlimited cuddles + 100 kisses')">Unlimited cuddles + 100 kisses / بغل نامحدود + ۱۰۰ بوسه</button>
+      <button class="option" onclick="finish('50 hugs & endless kisses')">50 hugs & endless kisses / ۵۰ بغل + بوسه بی‌نهایت</button>
+      <button class="option" onclick="finish('All day cuddles please')">All day cuddles please / بغل تمام روز لطفا</button>
+      <button class="option" onclick="finish('As many as possible')">As many as possible / هر چقدر که بشه</button>
+    </div>
+
+    <div id="final" class="question" style="display:none;">
+      <h1 style="font-size:3.6rem;">I love you Maryam 💖🐾</h1>
+      <p style="font-size:1.5rem;">Thank you for staying through the hard times. You are my everything.</p>
+      <div id="summary" class="summary"></div>
+      <button class="yes" onclick="sendToMaverick()" style="font-size:1.65rem; padding:22px 55px;">Send answers to Maverick 💌 / ارسال به Maverick</button>
+    </div>
+  </div>
+
+  <!-- Music -->
+  <audio id="music" loop>
+    <source src="chikar-kardi.mp3.mp3" type="audio/mpeg">
+  </audio>
+  <button onclick="toggleMusic()" style="position:fixed; bottom:15px; left:15px; z-index:100; padding:12px 18px; background:#ff6b9d; color:white; border-radius:50px;">🎵 Play Music</button>
+
+  <script>
+    let choices = {};
+
+    const noBtn = document.getElementById('noBtn');
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * (window.innerWidth - 200);
+      const y = Math.random() * (window.innerHeight - 130);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    });
+
+    function sayYes() {
+      document.getElementById('page1').style.display = 'none';
+      document.getElementById('page2').style.display = 'block';
+      toggleMusic(true);
+      createHearts();
+    }
+
+    function selectAndNext(nextPage, value) {
+      const keys = ['style', 'location', 'honeymoon', 'living'];
+      choices[keys[nextPage-3]] = value;
+      document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+      document.getElementById(`page${nextPage}`).style.display = 'block';
+    }
+
+    function finish(cuddles) {
+      choices.cuddles = cuddles;
+      document.querySelectorAll('.question').forEach(q => q.style.display = 'none');
+      document.getElementById('final').style.display = 'block';
+      showSummary();
+      createHearts();
+    }
+
+    function showSummary() {
+      const html = `
+        <h2>Maryam's Choices / انتخاب‌های مریم:</h2>
+        <p><strong>Wedding Style:</strong> ${choices.style || '—'}</p>
+        <p><strong>Ceremony Location:</strong> ${choices.location || '—'}</p>
+        <p><strong>Honeymoon:</strong> ${choices.honeymoon || '—'}</p>
+        <p><strong>Where to live:</strong> ${choices.living || '—'}</p>
+        <p><strong>Daily Love:</strong> ${choices.cuddles || '—'}</p>
+      `;
+      document.getElementById('summary').innerHTML = html;
+    }
+
+    function sendToMaverick() {
+      const data = `Maryam said YES to Maverick!\n\nStyle: ${choices.style}\nCeremony: ${choices.location}\nHoneymoon: ${choices.honeymoon}\nLiving: ${choices.living}\nDaily Cuddles & Kisses: ${choices.cuddles}`;
+      fetch('https://formspree.io/f/YOUR_CODE_HERE', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ message: data })
+      }).then(() => alert("Sent! / ارسال شد!")).catch(() => alert("Take a screenshot and send it to me ❤️"));
+    }
+
+    function toggleMusic(play) {
+      const audio = document.getElementById('music');
+      if (play || audio.paused) audio.play().catch(()=>{});
+      else audio.pause();
+    }
+
+    function createHearts() {
+      for (let i = 0; i < 30; i++) {
+        setTimeout(() => {
+          const h = document.createElement('div');
+          h.className = 'hearts';
+          h.textContent = ['💖','💕','🐾','🌸'][Math.floor(Math.random()*4)];
+          h.style.left = Math.random() * 100 + 'vw';
+          h.style.animationDuration = (Math.random() * 7 + 8) + 's';
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 22000);
+        }, i * 70);
+      }
+    }
+  </script>
+</body>
+</html>
