@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maverick & Maryam 💖</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500;600&family=Dancing+Script:wght@700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9ff3 0%, #f368e0 50%, #ffeaa7 100%);
+      color: #2c3e50;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 15px auto;
+      background: rgba(255, 255, 255, 0.97);
+      border-radius: 40px;
+      box-shadow: 0 25px 70px rgba(232, 67, 147, 0.25);
+      overflow: hidden;
+      border: 16px solid #ff6b9d;
+    }
+
+    .content {
+      padding: 40px 25px;
+      text-align: center;
+    }
+
+    h1 { font-family: 'Dancing Script', cursive; font-size: 3.4rem; color: #e84393; text-shadow: 0 4px 15px rgba(232, 67, 147, 0.35); }
+    .subtitle { font-size: 1.45rem; color: #34495e; margin: 18px 0 25px; line-height: 1.5; }
+
+    img {
+      max-width: 100%;
+      border-radius: 20px;
+      margin: 20px 0;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    button {
+      font-size: 1.4rem;
+      padding: 16px 45px;
+      margin: 10px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .yes { background: #ff6b9d; color: white; }
+    .yes:hover { transform: scale(1.08); }
+
+    .no {
+      background: #ff4757;
+      color: white;
+      position: fixed;
+      z-index: 1000;
+      padding: 14px 28px;
+      border-radius: 50px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .option {
+      background: #fff0f5;
+      color: #2c3e50;
+      padding: 18px 32px;
+      margin: 8px;
+      border-radius: 30px;
+      font-size: 1.25rem;
+      border: 3px solid #ff9ff3;
+      width: 90%;
+      max-width: 420px;
+    }
+    .option:hover { background: #ff6b9d; color: white; }
+
+    .hearts { position: absolute; font-size: 2.5rem; pointer-events: none; z-index: 10; animation: float 12s linear forwards; }
+    @keyframes float { 0% { transform: translateY(100vh); } 100% { transform: translateY(-100px); } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content" id="page1">
+      <img src="your-favorite-pic.jpg" alt="Maverick & Maryam">
+      <h1>Maryam 💖</h1>
+      <p class="subtitle">Hey my love... After everything, it's always been you.<br>سلام عشقم مریم</p>
+      <h1 style="font-size:2.8rem;">Maryam, will you marry me?<br>مریم جونم، باهام ازدواج می‌کنی؟</h1>
+
+      <button class="yes" onclick="sayYes()">YES!!! 💍 / بله!!!</button>
+    </div>
+
+    <!-- Add other pages as needed. This is the core fix. -->
+  </div>
+
+  <button class="no" id="noBtn">No / نه</button>
+
+  <audio id="music" loop>
+    <source src="chikar-kardi.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const audio = document.getElementById('music');
+
+    function playMusic() {
+      audio.volume = 0.65;
+      audio.play().catch(e => console.log("Music started on interaction"));
+    }
+
+    // Play on any tap/click
+    document.addEventListener('click', playMusic, { once: true });
+
+    const noBtn = document.getElementById('noBtn');
+    noBtn.addEventListener('mouseover', () => {
+      const x = Math.random() * (window.innerWidth - 160);
+      const y = Math.random() * (window.innerHeight - 90);
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+    });
+
+    function sayYes() {
+      playMusic();
+      alert("💖 She said YES! Music should start now. The No button can run freely.");
+      createHearts();
+    }
+
+    function createHearts() {
+      for (let i = 0; i < 35; i++) {
+        setTimeout(() => {
+          const h = document.createElement('div');
+          h.className = 'hearts';
+          h.textContent = '💖';
+          h.style.left = Math.random() * 100 + 'vw';
+          h.style.animationDuration = (Math.random() * 8 + 9) + 's';
+          document.body.appendChild(h);
+          setTimeout(() => h.remove(), 20000);
+        }, i * 90);
+      }
+    }
+  </script>
+</body>
+</html>
